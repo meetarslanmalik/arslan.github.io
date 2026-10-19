@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Arslan Malik (马林): computer vision researcher working on small-object detection and multi-object tracking. M.S., Chang’an University.">
+<meta name="theme-color" content="#232A33">
+<meta property="og:title" content="Arslan Malik (马林) – Computer vision researcher">
+<meta property="og:description" content="Small-object detection and real-time multi-object tracking. YOLOv8-SOEP and DeepSORT-CKFaster.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<title>Arslan Malik (马林) – Computer vision researcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="hero" id="top">
+  <nav class="nav" aria-label="Main"><a class="brand" href="#top" aria-label="Back to top">AM</a><div><a class="opt" href="#about">About</a><a href="#research">Research</a><a class="opt" href="#skills">Skills</a><a class="opt" href="#background">Education</a><a class="opt" href="#beyond">Beyond</a><a href="#contact">Contact</a></div></nav>
+  <canvas id="scene" role="img" aria-label="Animated aerial traffic scene with a detector drawing boxes and track trails around small vehicles"></canvas>
+  <div class="legend"><b>Live demo of my work:</b> a detector boxes small vehicles, and a tracker keeps their IDs. Dashed boxes are missed detections.</div>
+  <div class="wrap">
+    <h1>Arslan Malik<span class="zh"> 马林</span></h1>
+    <p class="lede">I build computer vision models that find small, crowded, half-hidden objects, and keep tracking them in real time.</p>
+    <div class="links">
+      <a class="btn primary" href="#research">See my research</a>
+      <a class="btn" href="https://github.com/meetarslanmalik">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/meetarslanmalik/">LinkedIn</a>
+      <a class="btn" href="assets/docs/Arslan_CV.pdf" download>Download CV</a>
+      <a class="btn" href="#contact">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="about">
+  <div class="wrap about">
+    <img class="portrait" alt="Portrait of Arslan Malik in a blue blazer" src="assets/img/arslan.jpg" width="240" height="240">
+    <p>I finished my M.S. in Computer Science and Technology at Chang’an University in Xi’an in 2025. My work sits where object detection meets multi-object tracking: aerial and surveillance footage, where a car is ten pixels wide and another car is parked on top of it.</p>
+    <div class="facts">
+      <div><strong>92.2%</strong><span>average tracking accuracy with DeepSORT-CKFaster</span></div>
+      <div><strong>70%+</strong><span>less compute and training time in the same work</span></div>
+      <div><strong>76.7%</strong><span>mAP50 for YOLOv8-SOEP on the VisDrone car class, ahead of YOLOv8, v10 and v11</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <h2>Research</h2>
+
+    <article class="project">
+      <div>
+        <h3>YOLOv8-SOEP</h3>
+        <p class="sub">An improved YOLOv8 for small-object detection. My master’s dissertation.</p>
+        <ul>
+          <li>Adds Spatial Pyramid Dilated Convolution and Omnidirectional Kernel Convolution to strengthen fine-scale features.</li>
+          <li>CSP-OmniKernel modules merge features from several directions more efficiently.</li>
+          <li>Tested on the VisDrone car class against YOLOv8, YOLOv10 and YOLOv11. It scores highest on precision, recall, mAP50 and mAP50-95.</li>
+          <li>Designed for real-time surveillance and autonomous systems, where small and partly hidden objects matter most.</li>
+        </ul>
+      </div>
+      <figure class="viz">
+        <img src="assets/img/detection.svg" alt="Illustration of small vehicles in aerial imagery with one missed detection drawn as a dashed box" width="320" height="200" loading="lazy">
+        <figcaption>Illustration only. Small vehicles, one missed (dashed).</figcaption>
+      </figure>
+    </article>
+
+    <div class="results">
+      <h3>YOLOv8-SOEP results on VisDrone, car class</h3>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Model</th><th>Params</th><th>GFLOPs</th><th>Precision</th><th>Recall</th><th>mAP50</th><th>mAP50-95</th></tr></thead>
+          <tbody>
+            <tr><td>YOLOv8</td><td>3.01M</td><td>8.1</td><td>0.806</td><td>0.676</td><td>0.750</td><td>0.508</td></tr>
+            <tr><td>YOLOv10</td><td>2.69M</td><td>8.2</td><td>0.810</td><td>0.659</td><td>0.744</td><td>0.507</td></tr>
+            <tr><td>YOLOv11</td><td>2.58M</td><td>6.3</td><td>0.810</td><td>0.671</td><td>0.750</td><td>0.508</td></tr>
+            <tr class="ours"><td>YOLOv8-SOEP</td><td>3.30M</td><td>11.8</td><td>0.822</td><td>0.691</td><td>0.767</td><td>0.527</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="src">Validation set of 548 images with 14,064 car instances. The gain over YOLOv8 comes with more compute: 11.8 GFLOPs against 8.1. <a href="https://github.com/meetarslanmalik/YOLOv8-SOEP-Vehicle-Detection">Code and weights setup on GitHub</a>.</p>
+    </div>
+
+    <article class="project">
+      <div>
+        <h3>DeepSORT-CKFaster</h3>
+        <p class="sub">A lightweight tracker for efficient trajectory extraction.</p>
+        <ul>
+          <li>CutMix augmentation to fix label imbalance and make the model more robust.</li>
+          <li>An adaptive, feedback-driven feature network that removes redundant computation.</li>
+          <li>An adaptive Kalman filter learning-rate mechanism that stabilizes training and speeds convergence.</li>
+          <li>Reached 92.2% average tracking accuracy while cutting computational cost and training time by over 70%.</li>
+        </ul>
+      </div>
+      <figure class="viz">
+        <img src="assets/img/tracking.svg" alt="Illustration of two vehicle paths crossing while each keeps its own ID" width="320" height="200" loading="lazy">
+        <figcaption>Illustration only. Two identities kept apart as paths cross.</figcaption>
+      </figure>
+    </article>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>What I work with</h2>
+    <div class="stack">
+      <div><h3>Computer vision</h3><p>Object detection (YOLOv5, v8, v10, v11), small and occluded objects, multi-object tracking with DeepSORT, person and vehicle Re-ID.</p></div>
+      <div><h3>Deep learning</h3><p>PyTorch, including Apple MPS. Ultralytics YOLO, CNNs, training, debugging and optimization.</p></div>
+      <div><h3>Efficient AI</h3><p>Lightweight network design, real-time inference, feature fusion, CutMix, adaptive Kalman filtering.</p></div>
+      <div><h3>Models and workflow</h3><p>Transformer and cross-attention modules, self-supervised representation learning, LLM-assisted research workflows.</p></div>
+      <div><h3>Languages</h3><p>Python, Java, basic MATLAB. English fluent, Chinese intermediate.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="background">
+  <div class="wrap">
+    <h2>Education and awards</h2>
+    <ul class="list">
+      <li><span class="when">2022 – July 2025</span><div><strong>M.S., Computer Science and Technology</strong><span>Chang’an University, Xi’an. CGPA 4.0 out of 5.0. Funded by the CSC Scholarship. Dissertation: YOLOv8-SOEP, an improved YOLOv8-based model for detection.</span></div></li>
+      <li><span class="when">2024 – 2025</span><div><strong>Excellent Student Performance Award</strong><span>Given to top achievers among more than 5,000 students.</span></div></li>
+      <li><span class="when">Graduated Jan 2022</span><div><strong>B.S., Computer Science and Technology</strong><span>Shenyang University of Chemical Technology. CGPA 3.2 out of 4.0. Awarded Excellent Graduate Student, given to top graduating students after a review of GPA, extracurricular leadership and research.</span></div></li>
+      <li><span class="when">2018</span><div><strong>Excellent Student, 2nd Scholarship (10k RMB)</strong><span>Won in a competitive math and physics exam.</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<section id="beyond">
+  <div class="wrap">
+    <h2>Beyond the lab</h2>
+    <ul class="list">
+      <li><span class="when">2024</span><div><strong>Hainan University Exchange Program</strong><span>One-week intensive on cultural immersion and landscape preservation. Contributed to a final report on regional cultural development.</span></div></li>
+      <li><span class="when">2023</span><div><strong>Joint University Initiative, Xi’an</strong><span>Worked with international teams on community projects. Represented the university on an industrial study tour of Weinan City’s Grape Industrial Park.</span></div></li>
+      <li><span class="when">2023</span><div><strong>Shaanxi Traditional Art Event</strong><span>Joined an art project with local Shaanxi artists promoting traditional Chinese painting, and helped local practitioners and international students talk to each other.</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact" class="contact" style="border-bottom:0">
+  <div class="wrap">
+    <h2>Let’s work together</h2>
+    <p>I’m open to research collaborations and PhD opportunities in computer vision.</p>
+    <a class="mail" href="mailto:arslan@chd.edu.cn">arslan@chd.edu.cn</a>
+    <p class="note"><a href="https://www.linkedin.com/in/meetarslanmalik/">LinkedIn</a> &nbsp;&middot;&nbsp; <a href="https://github.com/meetarslanmalik">GitHub</a> &nbsp;&middot;&nbsp; <a href="assets/docs/Arslan_CV.pdf" download>Download CV</a></p>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">© 2026 Arslan Malik</div></footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
